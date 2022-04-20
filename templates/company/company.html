@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <header>
+    <h1>제조업체원수 수질검사결과</h1>
+    </header>
+    <div class="container">
+        <table class="table table-width table-hover table-striped">
+        <tr>
+            <th scope="col">년도</th>
+            <th scope="col">반기</th>
+            <th scope="col">관리기관명</th>
+            <th scope="col">업체명</th>
+            <th scope="col">검사일자</th>
+            <th scope="col">검사기관</th>
+            <th scope="col">채수일자</th>
+            <th scope="col">검사여부</th>
+            <th scope="col">미검사사유</th>
+        </tr>
+        {% for data in datas %}
+            <tr>
+            <th scope="row">{{ data.year }}</th>
+            <td>{{ data.ht }}</td>
+            <td>{{ data.mgc }}</td>
+            <td>{{ data.entrpsNm }}</td>
+            <td>{{ data.chckDe }}</td>
+            <td>{{ data.chcklnstt }}</td>
+            <td>{{ data.wtsmpleDe }}</td>
+            <td>{{ data.chckAt }}</td>
+            <td>{{ data.unchckProvonsh }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+       <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center">
+        <!-- 이전페이지 -->
+        {% if datas.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ datas.previous_page_number }}">이전</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+        {% endif %}
+        <!-- 페이지리스트 -->
+        {% for page_number in datas.paginator.page_range %}
+        {% if page_number >= datas.number|add:-5 and page_number <= datas.number|add:5 %}
+        {% if page_number == datas.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        <!-- 다음페이지 -->
+        {% if datas.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ datas.next_page_number }}">다음</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+        {% endif %}
+    </ul>
+    <!-- 페이징처리 끝 -->
+    </div>
+{% endblock %}

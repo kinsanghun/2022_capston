@@ -1,11 +1,19 @@
 html, body {
-  height: 100%;
 }
 
+header {
+    margin : 2rem;
+}
+.container {
+    overflow : scroll;
+}
 .full-height {
-  height: 100%;
 }
 .main-wrapper {
     width : 100%;
-  background : burlywood;
+    background : rgba(235, 248, 248, 0.32);
+    padding : 1rem;
+}
+.table-width {
+    width : 100%;
 }
