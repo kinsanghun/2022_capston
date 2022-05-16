@@ -24,6 +24,9 @@ class api:
 
         datas = rDD["response"]["body"]["items"]["item"]
 
+        return datas
+
+    def tmp(self, datas):
         for data in datas:
             q = company(year=data["year"],
                           ht=data["ht"],

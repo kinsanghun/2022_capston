@@ -1,7 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <header>
-    <h1>Report</h1>
-    </header>
+    <div class="grid-header">
+        <div class="items">년도</div>
+        <div class="items">반기</div>
+        <div class="items">관리기관명</div>
+        <div class="items">업체명</div>
+        <div class="items">검사일자</div>
+        <div class="items">검사기관</div>
+        <div class="items">채수일자</div>
+        <div class="items">검사여부</div>
+        <div class="items">미검사사유</div>
+    </div>
+    <div class="tableset">
+    {% for data in datas %}
+        <div class="grid-rows">
+        <div class="items">{{ data.year }}</div>
+        <div class="items">{{ data.ht }}</div>
+        <div class="items">{{ data.mgc }}</div>
+        <div class="items">{{ data.entrpsNm }}</div>
+        <div class="items">{{ data.chckDe }}</div>
+        <div class="items">{{ data.chckInstt }}</div>
+        <div class="items">{{ data.wtrsmpleDe }}</div>
+        <div class="items">{{ data.chckAt }}</div>
+        <div class="items">{{ data.unchckPrvonsh }}</div>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}
